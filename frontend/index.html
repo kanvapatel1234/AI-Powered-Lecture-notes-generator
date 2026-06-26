@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Notes</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <main class="app-shell">
+        <section id="authPage" class="auth-page">
+            <div class="brand-panel">
+                <p class="eyebrow">AI Notes</p>
+                <h1>Turn video links into clean study notes.</h1>
+                <p class="brand-copy">Login or create an account to generate notes, view your text output, download it, and keep your history.</p>
+            </div>
+
+            <div class="auth-card">
+                <div class="tabs" role="tablist" aria-label="Authentication">
+                    <button class="tab active" id="loginTab" type="button">Login</button>
+                    <button class="tab" id="registerTab" type="button">Register</button>
+                </div>
+
+                <form id="loginForm" class="auth-form">
+                    <label for="loginEmail">Email</label>
+                    <input id="loginEmail" type="email" autocomplete="email" required>
+
+                    <label for="loginPassword">Password</label>
+                    <input id="loginPassword" type="password" autocomplete="current-password" required>
+
+                    <button class="primary-btn" type="submit">Login</button>
+                </form>
+
+                <form id="registerForm" class="auth-form hidden">
+                    <label for="registerName">Name</label>
+                    <input id="registerName" type="text" autocomplete="name" required>
+
+                    <label for="registerEmail">Email</label>
+                    <input id="registerEmail" type="email" autocomplete="email" required>
+
+                    <label for="registerPassword">Password</label>
+                    <input id="registerPassword" type="password" autocomplete="new-password" required>
+
+                    <button class="primary-btn" type="submit">Create account</button>
+                </form>
+
+                <p id="authMessage" class="message" role="status"></p>
+            </div>
+        </section>
+
+        <section id="notesPage" class="notes-page hidden">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">Workspace</p>
+                    <h2>AI Notes Generator</h2>
+                </div>
+                <button id="logoutBtn" class="ghost-btn" type="button">Logout</button>
+            </header>
+
+            <div class="workspace-grid">
+                <section class="panel controls-panel">
+                    <h3>Create notes</h3>
+                    <form id="notesForm" class="notes-form">
+                        <label for="videoUrl">Video URL</label>
+                        <input id="videoUrl" type="url" placeholder="https://www.youtube.com/watch?v=..." required>
+
+                        <fieldset>
+                            <legend>Choose option</legend>
+                            <label class="radio-row">
+                                <input type="radio" name="mode" value="1" checked>
+                                <span>1 - Interview</span>
+                            </label>
+                            <label class="radio-row">
+                                <input type="radio" name="mode" value="2">
+                                <span>2 - Short</span>
+                            </label>
+                            <label class="radio-row">
+                                <input type="radio" name="mode" value="3">
+                                <span>3 - Exam</span>
+                            </label>
+                        </fieldset>
+
+                        <button id="processBtn" class="primary-btn" type="submit">Process</button>
+                    </form>
+
+                    <div class="download-row">
+                        <button id="downloadBtn" class="secondary-btn" type="button" disabled>Download TXT</button>
+                    </div>
+
+                    <p id="notesMessage" class="message" role="status"></p>
+                </section>
+
+                <section class="panel preview-panel">
+                    <div class="panel-title-row">
+                        <h3>Text file preview</h3>
+                        <span id="selectedMeta">No note selected</span>
+                    </div>
+                    <pre id="notePreview" class="note-preview">Your generated notes will appear here.</pre>
+                </section>
+
+                <aside class="panel history-panel">
+                    <div class="panel-title-row">
+                        <h3>History</h3>
+                        <button id="refreshHistoryBtn" class="ghost-btn small" type="button">Refresh</button>
+                    </div>
+                    <div id="historyList" class="history-list"></div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
